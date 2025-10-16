@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Test.html</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+</head>
+<body>
+    <div id="header">
+        <h1>TP1.1 Front avancé</h1>
+    </div>
+    <section>
+        <h2>Introduction</h2>
+        <p>Dans cet exercice, vous allez créer une page HTML simple avec un formulaire de contact. Le formulaire comprendra des champs pour le nom, le prénom, l'email et un message. Vous ajouterez également un bouton pour soumettre le formulaire.</p>
+    </section>
+    <h2>Exercice 1</h2>
+    <p>Créer une page HTML avec un formulaire de contact comprenant les champs suivants :</p>
+    <ul>
+        <li>Nom</li>
+        <li>Prénom</li>
+        <li>Email</li>
+        <li>Message</li>
+    </ul>
+    <p>Ajouter un bouton "Envoyer" pour soumettre le formulaire.</p>
+    <form action="#" method="post">
+        <label for="nom">Nom:</label><br>
+        <input type="text" id="nom" name="nom" required><br><br>
+        <label for="prenom">Prénom:</label><br>
+        <input type="text" id="prenom" name="prenom" required><br><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
+        <input type="submit" value="Envoyer">
+    </form>
+        <p>Note: <i>Le formulaire n'a pas de fonctionnalité de soumission réelle, car l'action est définie sur "#".</i></p>
+    <div id="footer">
+        <p>TP1.1 Front avancé - Exercice 1</p>
+    </div>
+</body>
+<script src='main.js'></script>
+</html>

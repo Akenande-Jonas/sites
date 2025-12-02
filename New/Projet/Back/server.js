@@ -1,48 +1,59 @@
-const express = require('express'); // chargé le module express 
-const app = express(); // appel au constructeur express
+// Chargement du module Express qui permet de créer un serveur web
+//et de gérer les requêtes HTTP
+const express = require('express');
+const path = require("path");
+const jwt = require("jsonwebtoken");
+//création d'une clé secrète pour le JWT
+const JWT_SECRET = "A mettre dans le .env";
 
-const path = require('path'); // module path pour gérer les chemins de fichiers
 
-app.use(express.static(path.join(__dirname,"..","front"))); // définir le dossier static (front)
+//Middleware pour vérifier une token JWT
+// 👉 Middleware pour vérifier le token
+function authMiddleware(req, res, next) {
+  const authHeader = req.headers.authorization || "";
+  // Format attendu : "Bearer TOKEN"
+  const token = authHeader.split(" ")[1];
+  if (!token) {
+    return res.status(401).json({ success: false, message: "Token manquant" });
+  }
+  try {
+    const payload = jwt.verify(token, JWT_SECRET);
+    req.user = payload; // on stocke les infos dans req.user
+    next();
+  } catch (err) {
+    return res.status(401).json({ success: false, message: "Token invalide" });
+  }
+}
 
-// définir une route GET pour la racine ( / c'est la racine)
+
+// Création d'une instance de l'application Express
+const app =  express();
+
+
+app.use(express.static(path.join(__dirname, "..", "Front")));
+
+// Définition d'une route GET pour la racine ('/')
 app.get('/', (req, res) => {
-    res.send(path.join(__dirname,"..","front")); // envoyer le fichier index.html du dossier front
+  res.sendFile(path.join(__dirname, "..", "Front", "index.html"));
 });
 
-// définir une route GET pour /api/test
-app.get('/api/test', (req, res) => {                    // envoyer une réponse JSON
-    res.json({ message: 'API fonctionne!', 
-               jonas: 'Coucou Jonas',
-               age: 20,
-               langages: ['JavaScript', 'html', 'css']
-    }); 
+// Définition d'une route GET pour '/api/test'
+app.get('/api/test', authMiddleware,(req, res) => {
+  res.json({ 
+            message: 'Message secret ',
+   });      
 });
 
-// démarrer le serveur (sur le port défini et une fonction annonyme)
-app.listen(5001, () => {
-    console.log(`Server est sur le http://172.29.17.171:5000`);
+app.post('/api/login', express.json(), (req, res) => {
+    const { login, password } = req.body;
+    console.log(`Login reçu : ${login}, Password reçu : ${password}`); 
+    //créeer un token JWT
+    const token = jwt.sign({ login }, JWT_SECRET, { expiresIn: '4h' });
+    console.log(`Token JWT généré : ${token}`); 
+    res.json({ message: "Vous etes connecté", token : token });
 });
 
-app.post('/api/login', (req, res) => {
-    let receivedData = req.body; // Récupérer les données envoyées dans le corps de la requête
-    console.log('Données reçues:', receivedData); // Afficher les données reçues dans la console
-    res.json({ message: 'Données reçues avec succès!' }); // Envoyer une réponse JSON
-});
-
-module.exports = app;
-
-const jsonwebtoken = require('jsonwebtoken'); // importer le module jsonwebtoken
-app.post('/api/login', (req, res) => {
-    const { login, password } = req.body; // Récupérer le login et le mot de passe du corps de la requête
-    console.log(('Login:', login), ('Password:', password)); // Afficher le login et le mot de passe dans la console
-
-const token = jsonwebtoken.JsonWebTokenError.toString({}, JWT_SECRET, { // créer un token JWT
-    expiresIn: '24h' // le token expire en 24 heure
-});
-
-res.json({ // envoyer une réponse JSON avec le token
-    message: 'Connexion réussie!',
-    token: token
-});
+//listen attends 2 paramètres : le port et une fonction anonyme callback
+app.listen(3000,   () => {
+  console.log('Serveur lancé sur http://localhost:3000');
 });

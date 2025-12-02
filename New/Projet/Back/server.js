@@ -30,5 +30,19 @@ app.post('/api/login', (req, res) => {
     res.json({ message: 'Données reçues avec succès!' }); // Envoyer une réponse JSON
 });
 
-
 module.exports = app;
+
+const jsonwebtoken = require('jsonwebtoken'); // importer le module jsonwebtoken
+app.post('/api/login', (req, res) => {
+    const { login, password } = req.body; // Récupérer le login et le mot de passe du corps de la requête
+    console.log(('Login:', login), ('Password:', password)); // Afficher le login et le mot de passe dans la console
+
+const token = jsonwebtoken.JsonWebTokenError.toString({}, JWT_SECRET, { // créer un token JWT
+    expiresIn: '24h' // le token expire en 24 heure
+});
+
+res.json({ // envoyer une réponse JSON avec le token
+    message: 'Connexion réussie!',
+    token: token
+});
+});

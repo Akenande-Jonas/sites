@@ -12,7 +12,11 @@ app.get('/', (req, res) => {
 
 // définir une route GET pour /api/test
 app.get('/api/test', (req, res) => {
-    res.json({ message: 'API fonctionne!' }); // envoyer une réponse JSON
+    res.json({ message: 'API fonctionne!', 
+               jonas: 'Coucou Jonas',
+               age: 20,
+               langages: ['JavaScript', 'Python', 'Java']
+    }); // envoyer une réponse JSON
 });
 
 // démarrer le serveur (sur le port défini et une fonction annonyme)

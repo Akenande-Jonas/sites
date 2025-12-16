@@ -8,7 +8,7 @@ import Composant1 from './composant/Composant1';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Composant1 couleur = {'red'} />
+    <Composant1 couleur = {'green'} />
   </React.StrictMode>
 );
 

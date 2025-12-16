@@ -1,7 +1,6 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-const composant = ({ couleur }) => {
+const Composant1 = ({ couleur }) => {
     const [color, setColor] = useState(couleur);
 
     const changeColor = () => {
@@ -12,11 +11,11 @@ const composant = ({ couleur }) => {
   return (
     <div>
         <div style = {{color}}>
-            <h1 style={{ color: color }}>Couleur dynamique</h1>
-            <button onClick={changeColor}>Changer la couleur</button>
+          Couleur dynamique
         </div>
+        <button onClick={changeColor}>Changer la couleur</button>
     </div>
   );
 }
 
-export default composant;
+export default Composant1;

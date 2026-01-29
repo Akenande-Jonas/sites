@@ -1,0 +1,20 @@
+nohup: les entrées sont ignorées
+Serveur démarré sur http://localhost:8000
+API disponible sur http://localhost:8000/api/gps/latest
+Erreur de connexion à la base de données: Error: Access denied for user 'root'@'localhost'
+    at Packet.asError (/var/www/html/sites/projet/tp3/back-end/node_modules/mysql2/lib/packets/packet.js:740:17)
+    at ClientHandshake.execute (/var/www/html/sites/projet/tp3/back-end/node_modules/mysql2/lib/commands/command.js:29:26)
+    at PoolConnection.handlePacket (/var/www/html/sites/projet/tp3/back-end/node_modules/mysql2/lib/base/connection.js:508:34)
+    at PacketParser.onPacket (/var/www/html/sites/projet/tp3/back-end/node_modules/mysql2/lib/base/connection.js:93:12)
+    at PacketParser.executeStart (/var/www/html/sites/projet/tp3/back-end/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.<anonymous> (/var/www/html/sites/projet/tp3/back-end/node_modules/mysql2/lib/base/connection.js:100:25)
+    at Socket.emit (node:events:517:28)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Readable.push (node:internal/streams/readable:278:10) {
+  code: 'ER_ACCESS_DENIED_NO_PASSWORD_ERROR',
+  errno: 1698,
+  sqlState: '28000',
+  sqlMessage: "Access denied for user 'root'@'localhost'",
+  sql: undefined
+}

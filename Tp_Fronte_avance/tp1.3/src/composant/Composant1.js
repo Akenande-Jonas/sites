@@ -1,21 +1,31 @@
 import React, { useState } from 'react';
 
-const Composant1 = ({ couleur }) => {
-    const [color, setColor] = useState(couleur);
+const getRandomColor = () => {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+};
 
-    const changeColor = () => {
-        const newColor = color === 'blue' ? 'red' : 'blue';
-        setColor(newColor);
-    };
+const Composant1 = ({ couleur }) => {
+  const [color, setColor] = useState(couleur);
+
+  const handleMouseEnter = () => {
+    setColor(getRandomColor());
+  };
 
   return (
     <div>
-        <div style = {{color}}>
-          Couleur dynamique
-        </div>
-        <button onClick={changeColor}>Changer la couleur</button>
+      <div
+        style={{ color, cursor: 'pointer' }}
+        onMouseEnter={handleMouseEnter}
+      >
+        Couleur dynamique
+      </div>
     </div>
   );
-}
+};
 
 export default Composant1;

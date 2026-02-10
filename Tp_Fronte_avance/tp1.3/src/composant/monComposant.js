@@ -1,6 +1,6 @@
 import React,{useState}from 'react';
 
-const JCCompossant = ({couleur})=>{
+const monCompossant = ({couleur})=>{
     const [color, setColor] = useState(couleur);
 
     function getRandomHexColor() //Création d'un couleur hexadecimal aléatoire
@@ -26,4 +26,4 @@ const JCCompossant = ({couleur})=>{
     );
 };
 
-export default JCCompossant;
+export default monCompossant;

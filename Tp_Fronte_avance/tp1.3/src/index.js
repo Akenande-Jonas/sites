@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import JCCompossant from './compossant/JCCompossant.js'
+import monCompossant from './compossant/monCompossant.js'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <JCCompossant couleur={'yellow'}/>
+    <monCompossant couleur={'yellow'}/>
   </React.StrictMode>
 );
 

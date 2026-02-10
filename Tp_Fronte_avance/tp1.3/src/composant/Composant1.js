@@ -1,27 +1,29 @@
-import React, { useState } from 'react';
+import React,{useState}from 'react';
 
-function getRandomColor() {
-  const letters = '0123456789ABCDEF';
-  let color = '#';
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
+const JCCompossant = ({couleur})=>{
+    const [color, setColor] = useState(couleur);
 
-export default function Composant1({ couleur }) {
-  const [textColor, setTextColor] = useState(couleur);
+    function getRandomHexColor() //Création d'un couleur hexadecimal aléatoire
+    {
+    return '#' + Math.floor(Math.random() * 16777215).toString(16); // Retourne #Valeur generer
+    }
 
-  const handleMouseEnter = () => {
-    setTextColor(getRandomColor());
-  };
 
-  return (
-    <p
-      style={{ color: textColor, cursor: 'pointer' }}
-      onMouseEnter={handleMouseEnter}
-    >
-      Survole-moi pour changer ma couleur !
-    </p>
-  );
-}
+    const changeColor = () => {
+        const newColor = getRandomHexColor();
+        setColor(newColor);
+    };
+
+    return (
+        <div>
+            <div style={{color}}>
+                Je suis un compossant    
+            </div>
+            <button onMouseOver={changeColor}>
+                Changer la couleur
+            </button>
+        </div>
+    );
+};
+
+export default JCCompossant;

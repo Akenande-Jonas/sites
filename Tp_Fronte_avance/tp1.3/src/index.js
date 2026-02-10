@@ -1,29 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import JCCompossant from './compossant/JCCompossant.js'
 
-function getRandomColor() {
-  const letters = '0123456789ABCDEF';
-  let color = '#';
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <JCCompossant couleur={'yellow'}/>
+  </React.StrictMode>
+);
 
-export default function Composant1({ couleur }) {
-  const [textColor, setTextColor] = useState(couleur);
-
-  const handleMouseEnter = () => {
-    setTextColor(getRandomColor());
-  };
-
-  return (
-    <div>
-      <p
-        style={{ color: textColor, cursor: 'pointer' }}
-        onMouseEnter={handleMouseEnter}
-      >
-        Survole-moi pour changer ma couleur !
-      </p>
-    </div>
-  );
-}
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();

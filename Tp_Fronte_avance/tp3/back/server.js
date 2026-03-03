@@ -40,7 +40,7 @@ pm2.connect((err) => {
 
   pm2.start({
     script: 'application.js', // Le fichier de votre application
-    name: 'tp2-app', // Nom du processus
+    name: 'tp3-app', // Nom du processus
     exec_mode: 'cluster', // Mode d'exécution en cluster
     instances: 1, // Nombre d'instances à lancer
     autorestart: true, // Redémarrer automatiquement en cas de crash
@@ -65,4 +65,4 @@ const server = app.listen(port, () => {
                 ${os.networkInterfaces()['ens18'][0].address}:${port}`);
 });
 
-//================= fin du TP 2 ==============
+//================= fin du TP 3 ==============
